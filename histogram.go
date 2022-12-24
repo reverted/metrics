@@ -33,7 +33,14 @@ func (self *histogram) Summary() interface{} {
 	self.RLock()
 	defer self.RUnlock()
 
-	return self.Buckets
+	var results []map[string]interface{}
+	for k, v := range self.Buckets {
+		results = append(results, map[string]interface{}{
+			"path":   k,
+			"events": v.Events,
+		})
+	}
+	return results
 }
 
 type event struct {
