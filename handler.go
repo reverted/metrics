@@ -24,7 +24,7 @@ func (self *collector) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(self.Tracker.Summary())
 }
 
-func (self *collector) Handle(next http.Handler) http.HandlerFunc {
+func (self *collector) Track(next http.Handler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		defer self.track(r, time.Now())
 
