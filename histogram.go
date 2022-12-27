@@ -60,7 +60,7 @@ func newEventCounter(value interface{}) *eventCounter {
 
 type eventCounter struct {
 	sync.RWMutex
-	Events []event `json:"events"`
+	Events []event
 }
 
 func (self *eventCounter) Event(value interface{}) {
